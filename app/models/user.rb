@@ -64,8 +64,8 @@ class User < ApplicationRecord
 
     logger = Logger.new(STDOUT)
     logger.info('============================')
-    logger.info('from : ' + mail.from)
-    logger.info('to : ' + mail.to)
+    logger.info('from : ' + mail.from[0])
+    logger.info('to : ' + mail.to[0])
     logger.info('============================')
 
     mail.deliver_now
