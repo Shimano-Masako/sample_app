@@ -60,7 +60,15 @@ class User < ApplicationRecord
 
   # 有効化用のメールを送信する
   def send_activation_email
-    UserMailer.account_activation(self).deliver_now
+    mail = UserMailer.account_activation(self)
+
+    logger = Logger.new(STDOUT)
+    logger.info('============================')
+    logger.info('from : ' + mail.from)
+    logger.info('to : ' + mail.to)
+    logger.info('============================')
+
+    mail.deliver_now
   end
 
   private
