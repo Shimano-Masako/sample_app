@@ -1,7 +1,7 @@
-# Preview all emails at http://fantastic-space-system-69wwg5x5xxvgcxvvx-3000.app.github.dev/rails/mailers/user_mailer
+# Preview all emails at http://localhost:3000/rails/mailers/user_mailer
 class UserMailerPreview < ActionMailer::Preview
   # Preview this email at
-  # http://fantastic-space-system-69wwg5x5xxvgcxvvx-3000.app.github.dev/rails/mailers/user_mailer/account_activation
+  # http://localhost:3000/rails/mailers/user_mailer/account_activation
   def account_activation
     user = User.first
     user.activation_token = User.new_token
@@ -9,8 +9,10 @@ class UserMailerPreview < ActionMailer::Preview
   end
 
   # Preview this email at
-  # http://fantastic-space-system-69wwg5x5xxvgcxvvx-3000.app.github.dev/rails/mailers/user_mailer/password_reset
+  # http://localhost:3000/rails/mailers/user_mailer/password_reset
   def password_reset
-    UserMailer.password_reset
+    user = User.first
+    user.reset_token = User.new_token
+    UserMailer.password_reset(user)
   end
 end

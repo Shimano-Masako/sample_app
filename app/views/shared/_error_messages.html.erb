@@ -1,12 +1,16 @@
-<% if @user.errors.any? %>
+<%# frozen_string_literal: true %>
+<%# objectはrender時に渡す %>
+<%# 引数としてobjectを受け取る %>
+<%# 例: render 'shared/error_messages', object: @user %>
+<% if object && object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-danger">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      The form contains <%= pluralize(object.errors.count, "error") %>.
     </div>
     <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
+      <% object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
     </ul>
   </div>
 <% end %>
