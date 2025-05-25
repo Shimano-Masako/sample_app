@@ -15,6 +15,7 @@ class PasswordResetsController < ApplicationController
       flash[:info] = 'Email sent with password reset instructions'
       redirect_to root_url
     else
+      @user = User.new # ここを追加
       flash.now[:danger] = 'Email address not found'
       render 'new', status: :unprocessable_entity
     end
